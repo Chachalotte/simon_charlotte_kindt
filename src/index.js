@@ -12,7 +12,7 @@ let count = Number;
 let tour = 1;
 let simonValue; // La valeur du bouton qui est joué. On l'insère dans le tableau
 let playerTurn = false; // On assigne une variable pour permettre au joueur de savoir si c'est son tour ou non
-let speedRemove = 500;
+let $speedRemove = 500;
 
 $colors.forEach((color) => {
   color.addEventListener("click", (ev) => {
