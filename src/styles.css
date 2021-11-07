@@ -29,9 +29,19 @@ body {
 .blue {
     background-color:blue;
 }
+.blueSimon {
+    background-color: #6166B3;
+}
 .green {
     background-color:green;
 }
+.greenSimon {
+    background-color: #39A388;
+}
 .yellow {
     background-color:yellow;
+}
+.yellowSimon {
+    background-color:#FEE440;
+
 }
