@@ -5,111 +5,244 @@ const $green = document.querySelector(".simonContainer .green");
 const $blue = document.querySelector(".simonContainer .blue");
 const $yellow = document.querySelector(".simonContainer .yellow");
 
-const interval = 1000;
-
 let simonArray = []; // Le tableau qui contient toutes les valeurs de la séquence à taper dans l'ordre
 let count = Number;
 let tour = 1;
+let $score = 0;
 let simonValue; // La valeur du bouton qui est joué. On l'insère dans le tableau
-let playerTurn = false; // On assigne une variable pour permettre au joueur de savoir si c'est son tour ou non
+let $playerTurn = false; // On assigne une variable pour permettre au joueur de savoir si c'est son tour ou non
 let $speedRemove = 500;
+let $interval = 500;
 
 $colors.forEach((color) => {
-  color.addEventListener("click", (ev) => {
-    if (ev.target.classList.contains("red")) {
-      $red.innerHTML = "CLIC !";
-        if (simonArray[0] === 0) { // On retire le premier élément du tableau pour ajouter un point au score si l'utilisateur à toucher la bonne touche
-            simonArray.shift 
-            $score ++;
+    color.addEventListener("click", (ev) => {
+        if ($playerTurn === true) {
+            if (ev.target.classList.contains("red")) {
+            $red.innerHTML = "CLIC !";
+            console.log(simonArray);
+                if (simonArray[0] === 0) { // On retire le premier élément du tableau pour ajouter un point au score si l'utilisateur à toucher la bonne touche
+                    simonArray.shift();
+                    $score ++;
+                    // alert("OK");
+                    if (simonArray.length === 0) { 
+                        $playerTurn = false;
+                        alert($score);
+                        startGame();
+
+                        console.log(`score actuel ${$score}`);
+                    }
+                }
+                //Sinon, l'utilisateur perds la partie et on réinitialise la partie et on affiche la modale de relance
+                else {
+                    $score = 0;
+                    simonArray = [];
+                    $playerTurn = false;
+                    tour = 1;
+                    alert("PERDU !");
+                    alert($score);
+                }
+            }
+            if (ev.target.classList.contains("green")) {
+            $green.innerHTML = "CLIC !";
+            console.log(simonArray);
+                if (simonArray[0] === 1) { // On retire le premier élément du tableau pour ajouter un point au score si l'utilisateur à toucher la bonne touche
+                    simonArray.shift();
+                    $score ++;
+                    // alert("OK");                    
+                    if (simonArray.length === 0) { 
+                            $playerTurn = false;
+                            startGame();
+                        }   
+                    } 
+                //Sinon, l'utilisateur perds la partie et on réinitialise la partie et on affiche la modale de relance
+                else {
+                    $score = 0;
+                    simonArray = [];
+                    $playerTurn = false;
+                    tour = 1;
+                    alert("PERDU !");
+                }
+            }
+            if (ev.target.classList.contains("blue")) {
+            $blue.innerHTML = "CLIC !";
+            console.log(simonArray);
+                if (simonArray[0] === 2) { // On retire le premier élément du tableau pour ajouter un point au score si l'utilisateur à toucher la bonne touche
+                    simonArray.shift();
+                    $score ++;
+                    if (simonArray.length === 0) { 
+                        $playerTurn = false;
+                        alert($score);
+                        startGame();
+                    }
+                
+                }
+
+                //Sinon, l'utilisateur perds la partie et on réinitialise la partie et on affiche la modale de relance
+                else {
+                    $score = 0;
+                    simonArray = [];
+                    $playerTurn = false;
+                    tour = 1;
+                    alert("PERDU !");
+                }
+            }
+            if (ev.target.classList.contains("yellow")) {
+            $yellow.innerHTML = "CLIC !";
+            console.log(simonArray);
+                if (simonArray[0] === 3) { // On retire le premier élément du tableau pour ajouter un point au score si l'utilisateur à toucher la bonne touche
+                    simonArray.shift();
+                    $score ++;
+                    if (simonArray.length === 0) { 
+                        $playerTurn = false;
+                        alert($score);
+
+                        startGame();
+                        console.log(`score actuel ${$score}`);
+                        
+                    }
+                
+
+                } 
+                //Sinon, l'utilisateur perds la partie et on réinitialise la partie et on affiche la modale de relance
+                else {
+                    $score = 0;
+                    simonArray = [];
+                    $playerTurn = false;
+                    tour = 1;
+                    alert("PERDU !");
+                }
+            }
         }
-
-        //Sinon, l'utilisateur perds la partie et on réinitialise la partie et on affiche la modale de relance
-        else {
-            $score = 0;
-        }
-    }
-
-    else if (ev.target.classList.contains("blue")) {
-        $blue.innerHTML = "CLIC !";
-
-    }
-  });
+    });
 });
 
 function startGame(){
+    if ($playerTurn === true) {
+        alert("Vous avez déjà une partie en cours !");
+    }
+    else {
+        switch(tour) {
+            case 1 :
+                for (let i = 0; i < 1; i++) {
+                    simonValue = Math.floor(Math.random() * 4);
+                    simonArray.push(simonValue);
+                }
+                $speedRemove = 450;
+                $interval = 450;
+                break;
 
-    switch(tour) {
-        case 1 :
+            case 2 :
+                simonArray = [];
+                for (let i = 0; i < 2; i++) {
+                    simonValue = Math.floor(Math.random() * 4);
+                    simonArray.push(simonValue);
+                }
+                $speedRemove = 400;
+                $interval = 400;
+                break;
+            case 3 :
+                simonArray = [];
+                for (let i = 0; i < 3; i++) {
+                    simonValue = Math.floor(Math.random() * 4);
+                    simonArray.push(simonValue);
+                }
+                $speedRemove = 350;
+                $interval = 350;
+                break;
+            case 4 :
+                simonArray = [];
+                for (let i = 0; i < 4; i++) {
+                    simonValue = Math.floor(Math.random() * 4);
+                    simonArray.push(simonValue);
+                }
+                $speedRemove = 300;
+                $interval = 300;
+                break;
+            case 5 :
+                simonArray = [];
+                for (let i = 0; i < 5; i++) {
+                    simonValue = Math.floor(Math.random() * 4);
+                    simonArray.push(simonValue);
+                }
+                $speedRemove = 275;
+                $interval = 275;
+                break;
+            case 6 :
+                simonArray = [];
+                for (let i = 0; i < 6; i++) {
+                    simonValue = Math.floor(Math.random() * 4);
+                    simonArray.push(simonValue);
+                }
+                $speedRemove = 250;
+                $interval = 250;
+                break;
+            case 7 :
+                simonArray = [];
+                for (let i = 0; i < 7; i++) {
+                    simonValue = Math.floor(Math.random() * 4);
+                    simonArray.push(simonValue);
+                }
+                $speedRemove = 225;
+                $interval = 225;
+                break;            
+        }
+
+        if (tour === 8) { // On ne change plus la vitesse mais on ajoute une couleur 
+            simonArray = [];
+            for (let i = 0; i < $tour; i++) {
             simonValue = Math.floor(Math.random() * 4);
             simonArray.push(simonValue);
-            break;
+        }}
+    
+        tour++; //Ajout d'un tour au compteur
 
-        case 2 :
-            for (let i = 1; i < 3; i++) {
-                simonValue = Math.floor(Math.random() * 4);
-                simonArray.push(simonValue);
-            }
-            break;
-        case 3 :
-            for (let i = 1; i < 4; i++) {
-                simonValue = Math.floor(Math.random() * 4);
-                simonArray.push(simonValue);
-            }
-            playerTurn = true;
-            break;
-    }
-    if (tour > 8) {
-
-    }
-    tour++; //Ajout d'un tour au compteur
-
-    // On boucle le tableau pour vérifier chacunes des valeurs du tableau et faire changer la couleur correspondante. On montre ainsi à l'utilisateur la bonne couleur à sélectionner, le tout dans l'ordre.
-    // 0 = red, 1 = green, 2 = blue, 3 = yellow
-    simonArray.forEach(function(item, index){
-        setTimeout(function () {
-            console.log(item);
-            if(item === 0) {
-                redSelect();
-            }
-            else if(item === 1) {
-                greenSelect();
-            }
-            else if(item === 2) {
-                blueSelect();
-            }
-            else if(item === 3) {
-                yellowSelect();
-            }
-          }, index * interval);  
-    })
-   
-    console.log(tour);
-
-    console.log(simonArray);
+        // On boucle le tableau pour vérifier chacunes des valeurs du tableau et faire changer la couleur correspondante. On montre ainsi à l'utilisateur la bonne couleur à sélectionner, le tout dans l'ordre.
+        // 0 = red, 1 = green, 2 = blue, 3 = yellow
+        simonArray.forEach(function(item, index){
+            setTimeout(function () {
+                console.log(item);
+                if(item === 0) {
+                    redSelect();
+                }
+                else if(item === 1) {
+                    greenSelect();
+                }
+                else if(item === 2) {
+                    blueSelect();
+                }
+                else if(item === 3) {
+                    yellowSelect();
+                }
+            }, index * 500);  
+        })
+        $playerTurn = true;
+        console.log(tour);
+        console.log(simonArray);
+        }   
 };
 function redSelect () {
     setTimeout(function() {
         $red.classList.add('redSimon');
         colorRemove();
-    }, 1000);
+    }, $interval);
 }
 function greenSelect () {
     setTimeout(function() {
         $green.classList.add('greenSimon');
         colorRemove();
-    }, 1000);
+    }, $interval);
 }
 function blueSelect () {
     setTimeout(function() {
         $blue.classList.add('blueSimon');
         colorRemove();
-    }, 1000);
+    }, $interval);
 }
 function yellowSelect () {
     setTimeout(function() {
         $yellow.classList.add('yellowSimon');
         colorRemove();
-    }, 1000);
+    }, $interval);
 }
 function colorRemove () {
     setTimeout(function() {
