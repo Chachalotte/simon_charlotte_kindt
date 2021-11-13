@@ -1,5 +1,6 @@
 body {
     background-color: black!important;
+    font-family: 'Yuji Syuku', serif;
 }
 /* Alignement des éléments */
 .flex {
@@ -19,7 +20,6 @@ body {
 }
 
 /* Attribution des couleurs */
-
 .red {
     background-color:red;
 }
@@ -50,6 +50,15 @@ h1 {
     color: white;
 }
 
+.startGame{
+    margin-top : 10px;
+}
+
+.startGame:hover {
+    background-color:black ;
+    color: white;
+    transition: all 0.25s ease-out;
+}
 
 /* Animations  */
 @keyframes slideFromLeft {
@@ -72,6 +81,16 @@ h1 {
     }
 }
 
+@keyframes slideFromTopMinimal {
+    from {
+        margin-top: 0%;
+    }
+
+    to {
+        margin-top: -3%;
+    }
+}
+
 @keyframes fadeIn {
     from {
     opacity: 0;
@@ -80,6 +99,11 @@ h1 {
     to {
     opacity: 1;
     }
+}
+
+.simonContainer button:hover{
+    animation: 0.15s ease-in-out 0s slideFromTopMinimal;
+    animation-fill-mode: forwards;
 }
 
 h1 {
@@ -103,7 +127,18 @@ h1 {
     animation: 0.75s ease-in-out fadeIn;
 }
 
-.modalShow {
+.rules {
+    color: white;
+    background-image: url("close.png");
+    background-position: center;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 0;
+}
+
+.modalShow, .modalRules {
     position: absolute;
     top:0;
     left:0;
@@ -125,6 +160,15 @@ h1 {
     justify-items: center;
 }
 
+.innerRules {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+}
+
 .hide {
-    opacity: 0;
+    display: none;
 }

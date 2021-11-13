@@ -8,18 +8,24 @@ const $resultat = document.querySelector(".score");
 const innerResult = document.querySelector(".innerScore");
 const $scoreDynamic = document.querySelector(".scoreDynamic");
 const $tourDynamique = document.querySelector(".tourDynamique");
+const rules = document.querySelector(".rules");
+const innerRules = document.querySelector(".innerRules");
+const closeRules = document.querySelector(".closeRules");
 
 let simonArray = []; // Le tableau qui contient toutes les valeurs de la séquence à taper dans l'ordre
-let count = Number;
-let tour = 1;
-let $score = 0;
+let tour = 1; // Le tour actuel de la partie
+let $score = 0; //Le score qui gagne un à chaque fois qu'une touche est correctement touché dans l'ordre
 let simonValue; // La valeur du bouton qui est joué. On l'insère dans le tableau
 let $playerTurn = false; // On assigne une variable pour permettre au joueur de savoir si c'est son tour ou non
-let $speedRemove = 500;
-let $interval = 500;
+let $speedRemove = 500; // La vitesse ou l'effet de clic est joué
+let $interval = 500; // L'intervalle de vitesse entre l'appel d'une nouvelle couleur
+
+
 
 $colors.forEach((color) => {
     color.addEventListener("click", (ev) => {
+        console.log("ok");
+
         if ($playerTurn === true) {
             if (ev.target.classList.contains("red")) {
             // $red.innerHTML = "CLIC !";
@@ -277,3 +283,13 @@ function colorRemove () {
         }
     }, $speedRemove)
 }
+
+rules.addEventListener("click", (ev) => {
+    innerRules.classList.remove("hide");
+    innerRules.classList.add("modalRules");
+});
+
+closeRules.addEventListener("click", (ev) => {
+    innerRules.classList.add("hide");
+    innerRules.classList.remove("modalRules");
+})
