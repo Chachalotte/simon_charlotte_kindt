@@ -4,6 +4,8 @@ const $red = document.querySelector(".simonContainer .red");
 const $green = document.querySelector(".simonContainer .green");
 const $blue = document.querySelector(".simonContainer .blue");
 const $yellow = document.querySelector(".simonContainer .yellow");
+const $resultat = document.querySelector(".score");
+const innerResult = document.querySelector(".innerScore");
 
 let simonArray = []; // Le tableau qui contient toutes les valeurs de la séquence à taper dans l'ordre
 let count = Number;
@@ -18,33 +20,29 @@ $colors.forEach((color) => {
     color.addEventListener("click", (ev) => {
         if ($playerTurn === true) {
             if (ev.target.classList.contains("red")) {
-            $red.innerHTML = "CLIC !";
-            console.log(simonArray);
+            // $red.innerHTML = "CLIC !";
                 if (simonArray[0] === 0) { // On retire le premier élément du tableau pour ajouter un point au score si l'utilisateur à toucher la bonne touche
                     simonArray.shift();
                     $score ++;
                     // alert("OK");
                     if (simonArray.length === 0) { 
                         $playerTurn = false;
-                        alert($score);
-                        startGame();
-
-                        console.log(`score actuel ${$score}`);
+                        startGame(); 
                     }
                 }
                 //Sinon, l'utilisateur perds la partie et on réinitialise la partie et on affiche la modale de relance
                 else {
-                    $score = 0;
                     simonArray = [];
                     $playerTurn = false;
                     tour = 1;
-                    alert("PERDU !");
-                    alert($score);
+                    innerResult.innerHTML = "Score : " + $score;
+                    $resultat.classList.add("modalShow");
+                    $score = 0;
+
                 }
             }
             if (ev.target.classList.contains("green")) {
-            $green.innerHTML = "CLIC !";
-            console.log(simonArray);
+            // $green.innerHTML = "CLIC !";
                 if (simonArray[0] === 1) { // On retire le premier élément du tableau pour ajouter un point au score si l'utilisateur à toucher la bonne touche
                     simonArray.shift();
                     $score ++;
@@ -56,60 +54,55 @@ $colors.forEach((color) => {
                     } 
                 //Sinon, l'utilisateur perds la partie et on réinitialise la partie et on affiche la modale de relance
                 else {
-                    $score = 0;
                     simonArray = [];
                     $playerTurn = false;
                     tour = 1;
-                    alert("PERDU !");
+                    innerResult.innerHTML = "Score : " + $score;
+                    $resultat.classList.add("modalShow");
+                    $score = 0;
+
                 }
             }
             if (ev.target.classList.contains("blue")) {
-            $blue.innerHTML = "CLIC !";
-            console.log(simonArray);
+            // $blue.innerHTML = "CLIC !";
                 if (simonArray[0] === 2) { // On retire le premier élément du tableau pour ajouter un point au score si l'utilisateur à toucher la bonne touche
                     simonArray.shift();
                     $score ++;
                     if (simonArray.length === 0) { 
                         $playerTurn = false;
-                        alert($score);
                         startGame();
-                    }
-                
+                    }     
                 }
-
                 //Sinon, l'utilisateur perds la partie et on réinitialise la partie et on affiche la modale de relance
                 else {
-                    $score = 0;
                     simonArray = [];
                     $playerTurn = false;
                     tour = 1;
-                    alert("PERDU !");
+                    innerResult.innerHTML = "Score : " + $score;
+                    $resultat.classList.add("modalShow");
+                    $score = 0;
+
                 }
             }
             if (ev.target.classList.contains("yellow")) {
-            $yellow.innerHTML = "CLIC !";
-            console.log(simonArray);
+            // $yellow.innerHTML = "CLIC !";
                 if (simonArray[0] === 3) { // On retire le premier élément du tableau pour ajouter un point au score si l'utilisateur à toucher la bonne touche
                     simonArray.shift();
                     $score ++;
                     if (simonArray.length === 0) { 
                         $playerTurn = false;
-                        alert($score);
-
                         startGame();
-                        console.log(`score actuel ${$score}`);
-                        
                     }
-                
-
                 } 
                 //Sinon, l'utilisateur perds la partie et on réinitialise la partie et on affiche la modale de relance
                 else {
-                    $score = 0;
                     simonArray = [];
                     $playerTurn = false;
                     tour = 1;
-                    alert("PERDU !");
+                    innerResult.innerHTML = "Score : " + $score;
+                    $resultat.classList.add("modalShow");
+                    $score = 0;
+
                 }
             }
         }
@@ -123,7 +116,7 @@ function startGame(){
     else {
         switch(tour) {
             case 1 :
-                for (let i = 0; i < 1; i++) {
+                for (let i = 0; i < 2; i++) {  
                     simonValue = Math.floor(Math.random() * 4);
                     simonArray.push(simonValue);
                 }
@@ -132,8 +125,7 @@ function startGame(){
                 break;
 
             case 2 :
-                simonArray = [];
-                for (let i = 0; i < 2; i++) {
+                for (let i = 0; i < 3; i++) {
                     simonValue = Math.floor(Math.random() * 4);
                     simonArray.push(simonValue);
                 }
@@ -141,8 +133,7 @@ function startGame(){
                 $interval = 400;
                 break;
             case 3 :
-                simonArray = [];
-                for (let i = 0; i < 3; i++) {
+                for (let i = 0; i < 4; i++) {
                     simonValue = Math.floor(Math.random() * 4);
                     simonArray.push(simonValue);
                 }
@@ -150,8 +141,7 @@ function startGame(){
                 $interval = 350;
                 break;
             case 4 :
-                simonArray = [];
-                for (let i = 0; i < 4; i++) {
+                for (let i = 0; i < 5; i++) {
                     simonValue = Math.floor(Math.random() * 4);
                     simonArray.push(simonValue);
                 }
@@ -159,8 +149,7 @@ function startGame(){
                 $interval = 300;
                 break;
             case 5 :
-                simonArray = [];
-                for (let i = 0; i < 5; i++) {
+                for (let i = 0; i < 6; i++) {
                     simonValue = Math.floor(Math.random() * 4);
                     simonArray.push(simonValue);
                 }
@@ -168,8 +157,7 @@ function startGame(){
                 $interval = 275;
                 break;
             case 6 :
-                simonArray = [];
-                for (let i = 0; i < 6; i++) {
+                for (let i = 0; i < 7; i++) {
                     simonValue = Math.floor(Math.random() * 4);
                     simonArray.push(simonValue);
                 }
@@ -177,8 +165,7 @@ function startGame(){
                 $interval = 250;
                 break;
             case 7 :
-                simonArray = [];
-                for (let i = 0; i < 7; i++) {
+                for (let i = 0; i < 8; i++) {
                     simonValue = Math.floor(Math.random() * 4);
                     simonArray.push(simonValue);
                 }
@@ -188,19 +175,19 @@ function startGame(){
         }
 
         if (tour === 8) { // On ne change plus la vitesse mais on ajoute une couleur 
-            simonArray = [];
             for (let i = 0; i < $tour; i++) {
-            simonValue = Math.floor(Math.random() * 4);
-            simonArray.push(simonValue);
-        }}
-    
+                simonValue = Math.floor(Math.random() * 4);
+                simonArray.push(simonValue);
+            }
+        }
+
+
         tour++; //Ajout d'un tour au compteur
 
         // On boucle le tableau pour vérifier chacunes des valeurs du tableau et faire changer la couleur correspondante. On montre ainsi à l'utilisateur la bonne couleur à sélectionner, le tout dans l'ordre.
         // 0 = red, 1 = green, 2 = blue, 3 = yellow
         simonArray.forEach(function(item, index){
             setTimeout(function () {
-                console.log(item);
                 if(item === 0) {
                     redSelect();
                 }
@@ -216,8 +203,8 @@ function startGame(){
             }, index * 500);  
         })
         $playerTurn = true;
-        console.log(tour);
-        console.log(simonArray);
+        // console.log(tour);
+        // console.log(simonArray);
         }   
 };
 function redSelect () {
