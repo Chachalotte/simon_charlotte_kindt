@@ -14,7 +14,7 @@ body {
 /* Taille des éléments */
 .color {
     width: 25%;
-    height: 80vh;
+    height: 50vh;
     display: flex;
     justify-content: center;
 }
