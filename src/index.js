@@ -6,6 +6,8 @@ const $blue = document.querySelector(".simonContainer .blue");
 const $yellow = document.querySelector(".simonContainer .yellow");
 const $resultat = document.querySelector(".score");
 const innerResult = document.querySelector(".innerScore");
+const $scoreDynamic = document.querySelector(".scoreDynamic");
+const $tourDynamique = document.querySelector(".tourDynamique");
 
 let simonArray = []; // Le tableau qui contient toutes les valeurs de la séquence à taper dans l'ordre
 let count = Number;
@@ -24,6 +26,9 @@ $colors.forEach((color) => {
                 if (simonArray[0] === 0) { // On retire le premier élément du tableau pour ajouter un point au score si l'utilisateur à toucher la bonne touche
                     simonArray.shift();
                     $score ++;
+                    $scoreDynamic.innerHTML = "Votre score actuel : " + $score;
+                    $tourDynamique.innerHTML = "Votre tour actuel : " + tour;
+
                     // alert("OK");
                     if (simonArray.length === 0) { 
                         $playerTurn = false;
@@ -35,8 +40,10 @@ $colors.forEach((color) => {
                     simonArray = [];
                     $playerTurn = false;
                     tour = 1;
-                    innerResult.innerHTML = "Score : " + $score;
+                    innerResult.innerHTML = "Perdu ! Votre score : " + $score + "</br><button class='col-4 removeModal' onClick='startGame()'>Démarrer la partie</button>";
                     $resultat.classList.add("modalShow");
+                    $scoreDynamic.innerHTML = "";
+                    $tourDynamique.innerHTML = "";
                     $score = 0;
 
                 }
@@ -46,7 +53,9 @@ $colors.forEach((color) => {
                 if (simonArray[0] === 1) { // On retire le premier élément du tableau pour ajouter un point au score si l'utilisateur à toucher la bonne touche
                     simonArray.shift();
                     $score ++;
-                    // alert("OK");                    
+                    $scoreDynamic.innerHTML = "Votre score actuel : " + $score;
+                    $tourDynamique.innerHTML = "Votre tour actuel : " + tour;
+
                     if (simonArray.length === 0) { 
                             $playerTurn = false;
                             startGame();
@@ -57,8 +66,10 @@ $colors.forEach((color) => {
                     simonArray = [];
                     $playerTurn = false;
                     tour = 1;
-                    innerResult.innerHTML = "Score : " + $score;
+                    innerResult.innerHTML = "Perdu ! Votre score : " + $score + "</br><button class='col-4 removeModal' onClick='startGame()'>Démarrer la partie</button>";
                     $resultat.classList.add("modalShow");
+                    $scoreDynamic.innerHTML = "";
+                    $tourDynamique.innerHTML = "";
                     $score = 0;
 
                 }
@@ -68,6 +79,9 @@ $colors.forEach((color) => {
                 if (simonArray[0] === 2) { // On retire le premier élément du tableau pour ajouter un point au score si l'utilisateur à toucher la bonne touche
                     simonArray.shift();
                     $score ++;
+                    $scoreDynamic.innerHTML = "Votre score actuel : " + $score;
+                    $tourDynamique.innerHTML = "Votre tour actuel : " + tour;
+
                     if (simonArray.length === 0) { 
                         $playerTurn = false;
                         startGame();
@@ -78,8 +92,10 @@ $colors.forEach((color) => {
                     simonArray = [];
                     $playerTurn = false;
                     tour = 1;
-                    innerResult.innerHTML = "Score : " + $score;
+                    innerResult.innerHTML = "Perdu ! Votre score : " + $score + "</br><button class='col-4 removeModal' onClick='startGame()'>Démarrer la partie</button>";
                     $resultat.classList.add("modalShow");
+                    $scoreDynamic.innerHTML = "";
+                    $tourDynamique.innerHTML = "";
                     $score = 0;
 
                 }
@@ -89,6 +105,9 @@ $colors.forEach((color) => {
                 if (simonArray[0] === 3) { // On retire le premier élément du tableau pour ajouter un point au score si l'utilisateur à toucher la bonne touche
                     simonArray.shift();
                     $score ++;
+                    $scoreDynamic.innerHTML = "Votre score actuel : " + $score;
+                    $tourDynamique.innerHTML = "Votre tour actuel : " + tour;
+
                     if (simonArray.length === 0) { 
                         $playerTurn = false;
                         startGame();
@@ -99,17 +118,28 @@ $colors.forEach((color) => {
                     simonArray = [];
                     $playerTurn = false;
                     tour = 1;
-                    innerResult.innerHTML = "Score : " + $score;
+                    innerResult.innerHTML = "Perdu ! Votre score : " + $score + "</br><button class='col-4 removeModal' onClick='startGame()'>Démarrer la partie</button>";
                     $resultat.classList.add("modalShow");
+                    $tourDynamique.innerHTML = "";
+                    $scoreDynamic = "";
+
                     $score = 0;
 
                 }
             }
         }
+        else {
+            alert("Vous n'avez pas encore démarré la partie !");
+        }
     });
 });
 
 function startGame(){
+
+    $resultat.classList.remove("modalShow");
+    innerResult.innerHTML = "";
+
+    
     if ($playerTurn === true) {
         alert("Vous avez déjà une partie en cours !");
     }
@@ -175,7 +205,7 @@ function startGame(){
         }
 
         if (tour === 8) { // On ne change plus la vitesse mais on ajoute une couleur 
-            for (let i = 0; i < $tour; i++) {
+            for (let i = 0; i < tour; i++) {
                 simonValue = Math.floor(Math.random() * 4);
                 simonArray.push(simonValue);
             }
