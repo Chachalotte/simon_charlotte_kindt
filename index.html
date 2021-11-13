@@ -4,15 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simon Says - Charlotte KINDT</title>
+    <title>Super Simons IPSSI - Charlotte KINDT</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="src/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1 class="col-12 flex">Super Simon - Charlotte KINDT</h1>
+
+    <audio id="audioC3" src="src/c3.mp3"></audio>
+    <audio id="audioD3" src="src/d3.mp3"></audio>
+    <audio id="audioE3" src="src/e3.mp3"></audio>
+    <audio id="audioG4" src="src/g4.mp3"></audio>
+
+    <!-- Bouton cliquable pour afficher les règles du jeu -->
+    <aside class="rules"></aside>
+    <!-- Règles du jeu -->
+    <div class="innerRules hide" style="z-index: 10;">
+        <h2 style="z-index: 10;">Règles Super Simons</h2>
+        <ul>
+            <li>Pour commencer une partie, cliquer sur le bouton "démarrer la partie" en bas de page</li>
+            <li>Attendez que l'ensemble des couleurs soit joués une fois que la partie à commencé. Cliquez sur les couleurs dans l'ordre pour remporter le tour.</li>
+            <li>Plus le nombre de tours augmente, et plus la vitesse ainsi que le nombre de couleurs à cliquer augmente.</li>
+            <li>L'ordre de lecture des couleurs change à chaque tour !</li>
+            <li>Pour commencer une partie, cliquer sur le bouton "démarrer la partie" en bas de page.</li>
+            <li>En cliquant sur le bouton redémarrer la partie, le score et le nombre de tour se réinitialise.</li>
+        </ul>
+        <button class="closeRules">Fermer</button>
+    </div>
+
+    <h1 class="offset-3 col-5 flex">Super Simon - Charlotte KINDT</h1>
     <section class="col-12 flex simonContainer">
         <button class="color red"></button>
         <button class="color green"></button>
@@ -20,11 +44,12 @@
         <button class="color yellow"></button>
     </section>
 
-    <section class="col-12 flex column">
-        <button class="col-4" onClick="startGame()">Démarrer la partie</button>
+    <section class="col-12 flex column" >
+        <p class="yourTurn" style="color:white;"></p>
         <p class="scoreDynamic" style="color:white;"></p>
         <p class="tourDynamique" style="color:white;"></p>
-
+        <button class="col-3 startGame" onClick="startGame()">Démarrer la partie</button>
+        <button class="col-3 startGame" onClick="restartGame()">Redémarrer la partie</button>
     </section>
 
     <section class="score">
