@@ -8,4 +8,3 @@ Fonctionnalitées disponible :
 - Tour par tour avec la difficulté et la vitesse de façon crescendo
 - Bruit sonore lors du clignotement des dalles lumineuses
 - Clique sur un bouton pour lancer la partie
--
